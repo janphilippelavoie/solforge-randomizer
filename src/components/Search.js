@@ -1,5 +1,6 @@
 import { Button, Container, CssBaseline, TextField } from "@mui/material"
 import React, {useState} from "react"
+import ButtonWrapper from "./ButtonWrapper"
 
 export default function Search(props) {
 
@@ -13,7 +14,7 @@ export default function Search(props) {
   return (
     <>
       <TextField label={fieldLabel} onChange={(e) => setInput(e.target.value)} onKeyPress={(e) => {if (e.key === 'Enter') handleClick(input) }} />
-      <Button variant="contained" onClick={() => handleClick(input)}>{buttonLabel}</Button>
+      <ButtonWrapper handleClick={() => handleClick(input)}>{buttonLabel}</ButtonWrapper>
     </>
   )
 }
