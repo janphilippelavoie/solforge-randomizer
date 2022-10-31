@@ -48,7 +48,7 @@ export function App() {
       <Search fieldLabel="Username" buttonLabel="Import" handleClick={handleSearchClick} />
       {decks.length > 0 && <DeckTable decks={decks} />}
       {fused.length > 0 && showFused()}
-      {decks.length > 0 && <ButtonWrapper handleClick={randomFused}>Random Fused</Button>}
+      {decks.length > 0 && <ButtonWrapper handleClick={randomFused}>Random Fused</ButtonWrapper>}
 
     </>
   )
