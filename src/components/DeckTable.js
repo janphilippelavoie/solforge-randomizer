@@ -100,6 +100,8 @@ export default function DeckTable(props) {
           <TableCell align="right">{getFormattedAverage(deckStats.TotalHealthI, deckStats.nbCreatures)}</TableCell>
           <TableCell align="right">{getFormattedAverage(deckStats.TotalHealthII, deckStats.nbCreatures)}</TableCell>
           <TableCell align="right">{getFormattedAverage(deckStats.TotalHealthIII, deckStats.nbCreatures)}</TableCell>
+          <TableCell align="right">{deckStats.nbCreatures}</TableCell>
+          <TableCell align="right">{deckStats.nbSpells}</TableCell>
         </TableRow>
       )
     })
@@ -118,6 +120,8 @@ export default function DeckTable(props) {
             <TableCell align="right">Average HP (I)</TableCell>
             <TableCell align="right">Average HP (II)</TableCell>
             <TableCell align="right">Average HP (III)</TableCell>
+            <TableCell align="right">Creatures</TableCell>
+            <TableCell align="right">Spells</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
