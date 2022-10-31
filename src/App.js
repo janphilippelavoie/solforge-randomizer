@@ -2,6 +2,7 @@ import { Button, CssBaseline, List, ListItem, ListItemText } from '@mui/material
 import * as React from 'react';
 import Search from './components/Search';
 import DeckTable from './components/DeckTable'
+import DeckLink from './components/DeckLink';
 
 export function App() {
   //state
@@ -31,7 +32,7 @@ export function App() {
         {fused.map(deck => {
           return (
             <ListItem key={deck.id}>
-              <ListItemText id={deck.id} primary={`${deck.name} (${deck.faction})`} secondary={`https://solforgefusion.com/decks/${deck.id}`} />
+              <ListItemText id={deck.id} primary={`${deck.name} (${deck.faction})`} secondary={<DeckLink deckId={deck.id}/>} />
             </ListItem>
           )
 
