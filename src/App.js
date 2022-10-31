@@ -42,11 +42,11 @@ export function App() {
 
   return (
     <>
+      <CssBaseline />
       <Search fieldLabel="Username" buttonLabel="Import" handleClick={handleSearchClick} />
-      {decks.length > 0 && <DeckTable decks={decks}/>}
+      {decks.length > 0 && <DeckTable decks={decks} />}
       {fused.length > 0 && showFused()}
-      <Button onClick={randomFused}>Random Fused</Button>
-      
+      {decks.length > 0 && <Button onClick={randomFused}>Random Fused</Button>}
 
     </>
   )
