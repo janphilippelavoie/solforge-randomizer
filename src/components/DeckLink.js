@@ -9,7 +9,7 @@ export default function DeckLink(props) {
   const { deckId } = props
 
   return (
-      <Link variant="subtitle4" href={"https://solforgefusion.com/decks/" + deckId} target="_blank">Link</Link>
+      <Link variant="subtitle2" href={"https://solforgefusion.com/decks/" + deckId} target="_blank">Link</Link>
   )
 }
 
