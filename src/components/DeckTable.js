@@ -33,8 +33,8 @@ export default function DeckTable(props) {
     { id: "healthI", label: "Average Health (I)", number: true },
     { id: "healthII", label: "Average Health (II)", number: true },
     { id: "healthIII", label: "Average Health (III)", number: true },
-    { id: "creatures", label: "Creatures", number: true },
-    { id: "spells", label: "Spells", number: true }
+    { id: "nbCreatures", label: "Creatures", number: true },
+    { id: "nbSpells", label: "Spells", number: true }
   ]
 
   function getRows() {
@@ -73,8 +73,8 @@ export default function DeckTable(props) {
         "healthI": getFormattedAverage(deckTotals.totalHealthI, deckTotals.nbCreatures),
         "healthII": getFormattedAverage(deckTotals.totalHealthII, deckTotals.nbCreatures),
         "healthIII": getFormattedAverage(deckTotals.totalHealthIII, deckTotals.nbCreatures),
-        "creatures": deckTotals.creatures,
-        "spells": deckTotals.spells
+        "nbCreatures": deckTotals.nbCreatures,
+        "nbSpells": deckTotals.nbSpells
       }
       })
   }
@@ -106,16 +106,19 @@ export default function DeckTable(props) {
   }
 
   function getComparator(order, orderBy) {
+    const isNumber = headers.find(header => header.id === orderBy).number
     return order === 'desc'
-      ? (a, b) => descendingComparator(a, b, orderBy)
-      : (a, b) => -descendingComparator(a, b, orderBy);
+      ? (a, b) => descendingComparator(a, b, orderBy, isNumber)
+      : (a, b) => -descendingComparator(a, b, orderBy, isNumber);
   }
 
-  function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
+  function descendingComparator(a, b, orderBy, isNumber) {
+    const aValue = isNumber ? Number(a[orderBy]) : a[orderBy]
+    const bValue = isNumber ? Number(b[orderBy]) : b[orderBy]
+    if (bValue < aValue) {
       return -1;
     }
-    if (b[orderBy] > a[orderBy]) {
+    if (bValue > aValue) {
       return 1;
     }
     return 0;
