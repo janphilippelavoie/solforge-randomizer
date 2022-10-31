@@ -1,42 +1,12 @@
-import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Box, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import * as React from 'react'
+import DeckLink from './DeckLink';
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 });
-
-const columns = [
-  { field: 'deckName', headerName: 'Name', width: 70 },
-  { field: 'levelOneAttack', headerName: 'Average Level I Attack', type: 'number', width: 130 },
-  { field: 'levelTwoAttack', headerName: 'Average Level II Attack', type: 'number', width: 130 },
-  { field: 'levelThreeAttack', headerName: 'Average Level III Attack', type: 'number', width: 130 },
-  { field: 'levelOneHealth', headerName: 'Average Level I HP', type: 'number', width: 130 },
-  { field: 'levelTwoHealth', headerName: 'Average Level I HP', type: 'number', width: 130 },
-  { field: 'levelThreeHealth', headerName: 'Average Level I HP', type: 'number', width: 130 },
-]
-
-const rows = [
-  {
-    deckName: "aklkkk",
-    levelOneAttack: 1.2,
-    levelTwoAttack: 4.3,
-    levelThreeAttack: 5.4,
-    levelOneHealth: 1.5,
-    levelTwoHealth: 2.5,
-    levelThreeHealth: 5.5
-  },
-  {
-    deckName: "hhhh",
-    levelOneAttack: 1.2,
-    levelTwoAttack: 4.3,
-    levelThreeAttack: 5.4,
-    levelOneHealth: 1.5,
-    levelTwoHealth: 2.5,
-    levelThreeHealth: 5.5
-  }
-]
 
 export default function DeckTable(props) {
   const classes = useStyles();
@@ -78,7 +48,7 @@ export default function DeckTable(props) {
     return stats
   }
 
-  function getFormattedAverage(total, count, decimals=3) {
+  function getFormattedAverage(total, count, decimals = 3) {
     return (total / count).toFixed(decimals)
   }
 
@@ -89,7 +59,10 @@ export default function DeckTable(props) {
       return (
         <TableRow key={deck.id}>
           <TableCell component="th" scope="row">
-            {deck.name}
+            <Box>
+              {deck.name}<br />
+              <DeckLink deckId={deck.id} />
+            </Box>
           </TableCell>
           <TableCell component="th" scope="row">
             {deck.faction}
