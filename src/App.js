@@ -1,6 +1,7 @@
-import { Button, List, ListItem, ListItemText } from '@mui/material';
+import { Button, CssBaseline, List, ListItem, ListItemText } from '@mui/material';
 import * as React from 'react';
-import Search from './componenents/Search';
+import Search from './components/Search';
+import DeckTable from './components/DeckTable'
 
 export function App() {
   //state
@@ -11,45 +12,6 @@ export function App() {
     fetch('https://ul51g2rg42.execute-api.us-east-1.amazonaws.com/main/deck/?pageSize=1000&inclCards=true&username=' + username)
       .then(response => response.json())
       .then(data => setDecks(data.Items))
-  }
-
-  function listDecks() {
-    return (
-      <>
-        <Button onClick={randomFused}>Random Fused</Button>
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-          {decks.map((deck) => {
-            const labelId = `checkbox-list-label-${deck.id}`;
-
-            return (
-              <ListItem
-                key={deck.id}
-              // secondaryAction={
-              //   <IconButton edge="end" aria-label="comments">
-              //     <CommentIcon />
-              //   </IconButton>
-              // }
-              // disablePadding
-              >
-                <ListItemText id={labelId} primary={deck.name} />
-              {/* <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-              //   <ListItemIcon>
-              //     <Checkbox
-              //       edge="start"
-              //       checked={checked.indexOf(value) !== -1}
-              //       tabIndex={-1}
-              //       disableRipple
-              //       inputProps={{ 'aria-labelledby': labelId }}
-              //     />
-              //   </ListItemIcon>
-              //   <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
-              // </ListItemButton> */}
-              </ListItem>
-            )
-          })}
-        </List>
-      </>
-    )
   }
 
   function randomFused() {
@@ -69,7 +31,7 @@ export function App() {
         {fused.map(deck => {
           return (
             <ListItem key={deck.id}>
-              <ListItemText id={deck.id} primary={deck.name} secondary={`https://solforgefusion.com/decks/${deck.id}`} />
+              <ListItemText id={deck.id} primary={`${deck.name} (${deck.faction})`} secondary={`https://solforgefusion.com/decks/${deck.id}`} />
             </ListItem>
           )
 
@@ -81,8 +43,10 @@ export function App() {
   return (
     <>
       <Search fieldLabel="Username" buttonLabel="Import" handleClick={handleSearchClick} />
+      {decks.length > 0 && <DeckTable decks={decks}/>}
       {fused.length > 0 && showFused()}
-      {decks.length > 0 && listDecks()}
+      <Button onClick={randomFused}>Random Fused</Button>
+      
 
     </>
   )
