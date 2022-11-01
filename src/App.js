@@ -33,7 +33,6 @@ export function App() {
           return (
             <ListItem key={deck.id}>
               <ListItemText id={deck.id} primary={<DeckLink deckId={deck.id} deckName={deck.name}/>} secondary={deck.faction} />
-
             </ListItem>
           )
 
