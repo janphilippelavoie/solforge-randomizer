@@ -6,23 +6,23 @@ import * as React from 'react'
 
 const useStyles = makeStyles({
   buttonWrapper: {
-    background:"#797d9e",
-    color:"white",
-    margin:10,
-    fontWeight:"bold",
+    background: "#797d9e",
+    color: "white",
+    margin: 10,
+    fontWeight: "bold",
     '&:hover': {
       backgroundColor: '#36454F',
-  },
+    },
   },
 
 });
 
 
 export default function ButtonWrapper(props) {
-      const classes = useStyles();
+  const classes = useStyles();
 
-      //props
-    const { children, handleClick } = props
+  //props
+  const { children, handleClick } = props
   return (
     <Button variant="contained" className={classes.buttonWrapper} onClick={handleClick}>{children}</Button>
   )
