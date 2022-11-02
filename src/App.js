@@ -33,7 +33,7 @@ export function App() {
         {fused.map(deck => {
           return (
             <ListItem key={deck.id}>
-              <ListItemText id={deck.id} primary={`${deck.name} (${deck.faction})`} secondary={<DeckLink deckId={deck.id}/>} />
+              <ListItemText id={deck.id} primary={<DeckLink deckId={deck.id} deckName={deck.name}/>} secondary={deck.faction} />
             </ListItem>
           )
 

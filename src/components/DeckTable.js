@@ -90,8 +90,7 @@ export default function DeckTable(props) {
         <TableRow key={row.id}>
           {headers.map(header => (
             <TableCell align={header.number ? "right" : "left"}>
-              {row[header.id]}
-              {header.id === "name" && <Box><br /><DeckLink deckId={row.id} /></Box>}
+              {header.id === 'name' ? <DeckLink deckId={row.id} deckName={row[header.id]} /> : row[header.id]}
             </TableCell>
           ))}
         </TableRow>
