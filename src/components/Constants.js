@@ -1,4 +1,4 @@
-export const Paths = {
+export const ImagePaths = {
     Level1: "./Level1.svg",
     Level2: "./Level2.svg",
     Level3: "./Level3.svg",

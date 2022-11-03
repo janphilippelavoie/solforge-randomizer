@@ -4,7 +4,7 @@ import DeckLink from './DeckLink'
 import { visuallyHidden } from '@mui/utils'
 import IconWrapper from './IconWrapper';
 import { Typography } from '@mui/material';
-import { Paths } from './Constants';
+import { ImagePaths } from './Constants';
 
 
 const useStyles = makeStyles({
@@ -28,8 +28,8 @@ export default function DeckTable(props) {
     Spell: "Spell"
   }
 
-  function headerIcons(label, ImagePaths) {
-    return <><IconWrapper path={path}></IconWrapper> <Typography variant="inherit" sx={{ p: 0.2 }}>{label}</Typography></>
+  function headerIcons(label, imagePaths) {
+    return <><IconWrapper path={imagePaths}></IconWrapper> <Typography variant="inherit" sx={{ p: 0.2 }}>{label}</Typography></>
   }
   const headers = [
     { id: "name", label: "Name", number: false },
