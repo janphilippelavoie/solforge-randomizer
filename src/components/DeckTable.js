@@ -28,18 +28,18 @@ export default function DeckTable(props) {
     Spell: "Spell"
   }
 
-  function headerIcons(label, path) {
+  function headerIcons(label, ImagePaths) {
     return <><IconWrapper path={path}></IconWrapper> <Typography variant="inherit" sx={{ p: 0.2 }}>{label}</Typography></>
   }
   const headers = [
     { id: "name", label: "Name", number: false },
     { id: "faction", label: "Faction", number: false },
-    { id: "attackI", label: headerIcons("Average Attack", Paths.Level1), number: true },
-    { id: "attackII", label: headerIcons("Average Attack", Paths.Level2), number: true },
-    { id: "attackIII", label: headerIcons("Average Attack", Paths.Level3), number: true },
-    { id: "healthI", label: headerIcons("Average Health", Paths.Level1), number: true },
-    { id: "healthII", label: headerIcons("Average Health", Paths.Level2), number: true },
-    { id: "healthIII", label: headerIcons("Average Health", Paths.Level3), number: true },
+    { id: "attackI", label: headerIcons("Average Attack", ImagePaths.Level1), number: true },
+    { id: "attackII", label: headerIcons("Average Attack", ImagePaths.Level2), number: true },
+    { id: "attackIII", label: headerIcons("Average Attack", ImagePaths.Level3), number: true },
+    { id: "healthI", label: headerIcons("Average Health", ImagePaths.Level1), number: true },
+    { id: "healthII", label: headerIcons("Average Health", ImagePaths.Level2), number: true },
+    { id: "healthIII", label: headerIcons("Average Health", ImagePaths.Level3), number: true },
     { id: "nbCreatures", label: "Creatures", number: true },
     { id: "nbSpells", label: "Spells", number: true }
   ]
