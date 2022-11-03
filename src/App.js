@@ -4,8 +4,7 @@ import Search from './components/Search';
 import DeckTable from './components/DeckTable'
 import DeckLink from './components/DeckLink';
 import ButtonWrapper from './components/ButtonWrapper';
-import BananaImage from './components/IconWrapper';
-import BoxStyles from './components/BoxStyles';
+import BoxStyles from './components/BoxWrapper';
 
 export function App() {
   //state

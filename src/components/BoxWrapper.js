@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import * as React from 'react'
 
 const useStyles = makeStyles({
-    SmallRoundedBox: {
+    smallRoundedBox: {
         margin: 2,
         border: 2,
         width: "16%",
