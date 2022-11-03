@@ -2,6 +2,10 @@ import { Box, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, Ta
 import * as React from 'react'
 import DeckLink from './DeckLink'
 import { visuallyHidden } from '@mui/utils'
+import IconWrapper from './IconWrapper';
+import { Typography } from '@mui/material';
+import { ImagePaths } from './Constants';
+
 
 const useStyles = makeStyles({
   table: {
@@ -24,15 +28,18 @@ export default function DeckTable(props) {
     Spell: "Spell"
   }
 
+  function headerIcons(label, imagePaths) {
+    return <><IconWrapper path={imagePaths}></IconWrapper> <Typography variant="inherit" sx={{ p: 0.2 }}>{label}</Typography></>
+  }
   const headers = [
     { id: "name", label: "Name", number: false },
     { id: "faction", label: "Faction", number: false },
-    { id: "attackI", label: "Average Attack (I)", number: true },
-    { id: "attackII", label: "Average Attack (II)", number: true },
-    { id: "attackIII", label: "Average Attack (III)", number: true },
-    { id: "healthI", label: "Average Health (I)", number: true },
-    { id: "healthII", label: "Average Health (II)", number: true },
-    { id: "healthIII", label: "Average Health (III)", number: true },
+    { id: "attackI", label: headerIcons("Average Attack", ImagePaths.Level1), number: true },
+    { id: "attackII", label: headerIcons("Average Attack", ImagePaths.Level2), number: true },
+    { id: "attackIII", label: headerIcons("Average Attack", ImagePaths.Level3), number: true },
+    { id: "healthI", label: headerIcons("Average Health", ImagePaths.Level1), number: true },
+    { id: "healthII", label: headerIcons("Average Health", ImagePaths.Level2), number: true },
+    { id: "healthIII", label: headerIcons("Average Health", ImagePaths.Level3), number: true },
     { id: "nbCreatures", label: "Creatures", number: true },
     { id: "nbSpells", label: "Spells", number: true }
   ]
@@ -76,7 +83,7 @@ export default function DeckTable(props) {
         "nbCreatures": deckTotals.nbCreatures,
         "nbSpells": deckTotals.nbSpells
       }
-      })
+    })
   }
 
   function getFormattedAverage(total, count, decimals = 3) {
@@ -122,7 +129,7 @@ export default function DeckTable(props) {
     }
     return 0;
   }
-  
+
 
   return (
     <TableContainer component={Paper}>

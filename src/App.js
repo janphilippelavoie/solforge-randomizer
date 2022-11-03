@@ -1,9 +1,10 @@
-import { Button, CssBaseline, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, CssBaseline, List, ListItem, ListItemText, Typography } from '@mui/material';
 import * as React from 'react';
 import Search from './components/Search';
 import DeckTable from './components/DeckTable'
 import DeckLink from './components/DeckLink';
 import ButtonWrapper from './components/ButtonWrapper';
+import BoxStyles from './components/BoxWrapper';
 
 export function App() {
   //state
@@ -29,16 +30,22 @@ export function App() {
 
   function showFused() {
     return (
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        {fused.map(deck => {
-          return (
-            <ListItem key={deck.id}>
-              <ListItemText id={deck.id} primary={<DeckLink deckId={deck.id} deckName={deck.name}/>} secondary={deck.faction} />
-            </ListItem>
-          )
-
-        })}
-      </List>
+      <Box sx={{margin: 2, border: 2, width: "16%", borderColor: 'grey.500', bgcolor: 'background.paper', borderRadius: 6}} justifyContent="center">
+        <List>
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h6">Your random fused deck:</Typography>
+            </ListItemText>
+          </ListItem>
+          {fused.map(deck => {
+            return (
+              <ListItem key={deck.id}>
+                <ListItemText id={deck.id} primary={<DeckLink deckId={deck.id} deckName={deck.name} />} secondary={deck.faction} />
+              </ListItem>
+            )
+          })}
+        </List>
+      </Box>
     )
   }
 
