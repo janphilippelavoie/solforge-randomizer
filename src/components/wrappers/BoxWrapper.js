@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function BoxStyles(props) {
+export default function BoxWrapper(props) {
     const classes = useStyles()
     // props
     const { style } = props
