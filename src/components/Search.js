@@ -1,7 +1,7 @@
 import { ClassNames } from "@emotion/react";
 import { Box, Button, Container, CssBaseline, TextField } from "@mui/material"
 import React, { useState } from "react"
-import ButtonWrapper from "./ButtonWrapper"
+import ButtonWrapper from "./wrappers/ButtonWrapper"
 
 
 export default function Search(props) {

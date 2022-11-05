@@ -2,7 +2,7 @@
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/styles';
 import { ImageList } from '@mui/material';
-import { Paths } from './Constants';
+import { Paths } from '../../Constants';
 
 
 const useStyles = makeStyles({
