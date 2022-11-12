@@ -11,3 +11,13 @@ export const URIs = {
     SolforgeSite: "https://solforgefusion.com/",
     SolforgeAPI: "https://ul51g2rg42.execute-api.us-east-1.amazonaws.com/main/"
 }
+
+export const CardType = {
+  Creature: "Creature",
+  Spell: "Spell"
+}
+
+export const CreatureProperty = {
+  Attack: "attack",
+  Health: "health"
+}

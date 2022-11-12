@@ -1,19 +1,21 @@
 import { CssBaseline } from '@mui/material';
 import * as React from 'react';
-import {URIs} from "./Constants";
+
+// Components
 import LandingPage from './components/LandingPage';
 import DeckPage from './components/DeckPage';
 
-export function App() {
+// Services
+import DeckGateway from './data/DeckGateway';
 
+export function App() {
   //state
   const [decks, setDecks] = React.useState([])
  
+  const deckGateway = new DeckGateway();
 
   function handleSearchClick(username) {
-    fetch(URIs.SolforgeAPI + `deck?pageSize=1000&inclCards=true&username=${username.toLowerCase()}`)
-      .then(response => response.json())
-      .then(data => setDecks(data.Items))
+    deckGateway.getDecks(username).then(loadedDecks => setDecks(loadedDecks));
   }
 
   return (

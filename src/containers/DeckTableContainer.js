@@ -2,7 +2,7 @@ import * as React from 'react'
 import DeckTable from '../components/DeckTable';
 import IconWrapper from "../components/wrappers/IconWrapper";
 import {Typography} from "@mui/material";
-import {ImagePaths} from "../Constants";
+import {ImagePaths, CardType, CreatureProperty} from "../Constants";
 
 
 
@@ -12,13 +12,6 @@ export default function DeckTableContainer(props) {
   const { decks } = props
 
   //state
-
-
-  const CardType = {
-    Creature: "Creature",
-    Spell: "Spell"
-  }
-
 
   function headerIcons(label, imagePaths) {
     return (
@@ -44,50 +37,25 @@ export default function DeckTableContainer(props) {
 
   function getRows() {
     return decks.map(deck => {
-      let deckTotals = Object.values(deck.cards).reduce((totals, card) => {
-        if (card.cardType === CardType.Creature) {
-          totals.nbCreatures += 1
-          totals.totalAttackI += card.levels["1"].attack
-          totals.totalAttackII += card.levels["2"].attack
-          totals.totalAttackIII += card.levels["3"].attack
-          totals.totalHealthI += card.levels["1"].health
-          totals.totalHealthII += card.levels["2"].health
-          totals.totalHealthIII += card.levels["3"].health
-        } else if (card.cardType === CardType.Spell) {
-          totals.nbSpells += 1
-        }
-        return totals
-      },
-        {
-          totalAttackI: 0,
-          totalAttackII: 0,
-          totalAttackIII: 0,
-          totalHealthI: 0,
-          totalHealthII: 0,
-          totalHealthIII: 0,
-          nbCreatures: 0,
-          nbSpells: 0
-        })
       return {
-        "id": deck.id,
-        "name": deck.name,
-        "faction": deck.faction,
-        "attackI": getFormattedAverage(deckTotals.totalAttackI, deckTotals.nbCreatures),
-        "attackII": getFormattedAverage(deckTotals.totalAttackII, deckTotals.nbCreatures),
-        "attackIII": getFormattedAverage(deckTotals.totalAttackIII, deckTotals.nbCreatures),
-        "healthI": getFormattedAverage(deckTotals.totalHealthI, deckTotals.nbCreatures),
-        "healthII": getFormattedAverage(deckTotals.totalHealthII, deckTotals.nbCreatures),
-        "healthIII": getFormattedAverage(deckTotals.totalHealthIII, deckTotals.nbCreatures),
-        "nbCreatures": deckTotals.nbCreatures,
-        "nbSpells": deckTotals.nbSpells
-      }
-      })
+          "id": deck.id,
+          "name": deck.name,
+          "faction": deck.faction,
+          "attackI": getFormattedValue(deck.getAverageCreatureProperty(1, CreatureProperty.Attack)),
+          "attackII": getFormattedValue(deck.getAverageCreatureProperty(2, CreatureProperty.Attack)),
+          "attackIII": getFormattedValue(deck.getAverageCreatureProperty(3, CreatureProperty.Attack)),
+          "healthI": getFormattedValue(deck.getAverageCreatureProperty(1, CreatureProperty.Health)),
+          "healthII": getFormattedValue(deck.getAverageCreatureProperty(2, CreatureProperty.Health)),
+          "healthIII": getFormattedValue(deck.getAverageCreatureProperty(3, CreatureProperty.Health)),
+          "nbCreatures": deck.getNbCardsOfType(CardType.Creature),
+          "nbSpells": deck.getNbCardsOfType(CardType.Spell)
+        }
+      });
   }
 
-  function getFormattedAverage(total, count, decimals = 3) {
-    return (total / count).toFixed(decimals)
+  function getFormattedValue(value, decimals = 3) {
+    return (value).toFixed(decimals)
   }
-
 
   return (
       <DeckTable 
