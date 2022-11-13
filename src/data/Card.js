@@ -44,4 +44,11 @@ export class Card {
         }
         return undefined;
     }
+
+    getCreatureSubTypes() {
+        if (this.isCreature()) {
+            return this.cardSubTypes.split(" ").sort();
+        }
+        return [];
+    }
 }
