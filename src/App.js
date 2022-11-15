@@ -3,7 +3,7 @@ import * as React from 'react';
 
 // Components
 import LandingPage from './components/LandingPage';
-import DeckPage from './components/DeckPage';
+import CollectionPage from './components/CollectionPage';
 
 // Services
 import DeckGateway from './data/DeckGateway';
@@ -23,7 +23,7 @@ export function App() {
     <>
       <CssBaseline />
 
-      {collection.decks.length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <DeckPage handleSearchClick={handleSearchClick} collection={collection} />}
+      {collection.decks.length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <CollectionPage handleSearchClick={handleSearchClick} collection={collection} />}
     </>
   )
 }
