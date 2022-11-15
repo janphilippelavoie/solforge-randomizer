@@ -13,18 +13,19 @@ import ButtonWrapper from './wrappers/ButtonWrapper';
 export default function DeckPage(props) {
 
     //props
-    const { handleSearchClick, decks } = props
+    const { handleSearchClick, collection } = props
 
     //state
     const [fused, setFused] = React.useState([])
 
     function randomFused() {
+        let decks = collection.decks;
         while (true) {
             let first_deck = decks[Math.floor((Math.random() * decks.length))]
             let second_deck = decks[Math.floor((Math.random() * decks.length))]
             if (first_deck.faction !== second_deck.faction) {
                 setFused([first_deck, second_deck])
-                return
+                return;
             }
         }
     }
@@ -34,7 +35,7 @@ export default function DeckPage(props) {
             <Search fieldLabel="Username" buttonLabel="Import" handleSearchClick={handleSearchClick} />
             {fused.length > 0 && <FusedDeck fused={fused} />}
             <ButtonWrapper handleClick={randomFused}>Random Fused</ButtonWrapper>
-            <DeckTableContainer decks={decks} />
+            <DeckTableContainer decks={collection.decks} />
         </>
     )
 }
