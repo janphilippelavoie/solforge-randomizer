@@ -2,7 +2,6 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 import Search from './Search';
 import DeckPage from './DeckPage';
@@ -11,8 +10,6 @@ import FusedDeckPage from './FusedDeckPage';
 /* const useStyles = makeStyles({
 
 }); */
-
-
 
 export default function CollectionPage(props) {
 
