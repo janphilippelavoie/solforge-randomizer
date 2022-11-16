@@ -39,6 +39,8 @@ export default function DeckTable(props) {
       } else if (deckType === 'fusedDeck') {
         return <FusedDeckLink deckId={row.id} deckName={row[header.id]} />;
       }
+    } else if (header.id === 'deck1' || header.id === 'deck2') {
+      return <DeckLink deckId={row[header.id + 'Id']} deckName={row[header.id]} />;
     }
     
     return row[header.id];
