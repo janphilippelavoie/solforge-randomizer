@@ -3,26 +3,27 @@ import * as React from 'react';
 
 // Components
 import LandingPage from './components/LandingPage';
-import DeckPage from './components/DeckPage';
+import CollectionPage from './components/CollectionPage';
 
 // Services
 import DeckGateway from './data/DeckGateway';
+import { Collection } from './data/Collection';
 
 export function App() {
   //state
-  const [decks, setDecks] = React.useState([])
+  const [collection, setCollection] = React.useState(new Collection())
  
   const deckGateway = new DeckGateway();
 
   function handleSearchClick(username) {
-    deckGateway.getDecks(username).then(loadedDecks => setDecks(loadedDecks));
+    deckGateway.getCollection(username).then(loadedCollection => setCollection(loadedCollection));
   }
 
   return (
     <>
       <CssBaseline />
 
-      {decks.length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <DeckPage handleSearchClick={handleSearchClick} decks={decks} />}
+      {collection.getDecks().length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <CollectionPage handleSearchClick={handleSearchClick} collection={collection} />}
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel } from '@material-ui/core';
 import * as React from 'react'
 import DeckLink from "./DeckLink";
-
+import FusedDeckLink from "./FusedDeckLink";
 
 
 const useStyles = makeStyles({
@@ -20,7 +20,7 @@ export default function DeckTable(props) {
   const classes = useStyles();
 
   //props
-  const { headers, rows, tableName } = props
+  const { headers, rows, tableName, deckType = 'deck' } = props
 
   //state
   const [order, setOrder] = React.useState('asc');
@@ -32,13 +32,27 @@ export default function DeckTable(props) {
     setOrderBy(property);
   }
 
+  function getCell(header, row) {
+    if (header.id === 'name') {
+      if (deckType === 'deck') {
+        return <DeckLink deckId={row.id} deckName={row[header.id]} />;
+      } else if (deckType === 'fusedDeck') {
+        return <FusedDeckLink deckId={row.id} deckName={row[header.id]} />;
+      }
+    } else if (header.id === 'deck1' || header.id === 'deck2') {
+      return <DeckLink deckId={row[header.id + 'Id']} deckName={row[header.id]} />;
+    }
+    
+    return row[header.id];
+  }
+
   function getSortedTableRows() {
     return rows.sort(getComparator(order, orderBy)).map(row => {
       return (
           <TableRow key={row.id}>
             {headers.map(header => (
                 <TableCell align={header.number ? "right" : "left"}>
-                  {header.id === 'name' ? <DeckLink deckId={row.id} deckName={row[header.id]} /> : row[header.id]}
+                  {getCell(header, row)}
                 </TableCell>
             ))}
           </TableRow>

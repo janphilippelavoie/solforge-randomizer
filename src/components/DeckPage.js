@@ -1,7 +1,6 @@
 import * as React from 'react'
 import DeckTableContainer from '../containers/DeckTableContainer';
-import FusedDeck from './FusedDeck';
-import Search from './Search';
+import FusedDeckBox from './FusedDeckBox';
 import ButtonWrapper from './wrappers/ButtonWrapper';
 
 /* const useStyles = makeStyles({
@@ -13,10 +12,10 @@ import ButtonWrapper from './wrappers/ButtonWrapper';
 export default function DeckPage(props) {
 
     //props
-    const { handleSearchClick, decks } = props
+    const { decks } = props;
 
     //state
-    const [fused, setFused] = React.useState([])
+    const [fused, setFused] = React.useState([]);
 
     function randomFused() {
         while (true) {
@@ -24,15 +23,14 @@ export default function DeckPage(props) {
             let second_deck = decks[Math.floor((Math.random() * decks.length))]
             if (first_deck.faction !== second_deck.faction) {
                 setFused([first_deck, second_deck])
-                return
+                return;
             }
         }
     }
 
     return (
         <>
-            <Search fieldLabel="Username" buttonLabel="Import" handleSearchClick={handleSearchClick} />
-            {fused.length > 0 && <FusedDeck fused={fused} />}
+            {fused.length > 0 && <FusedDeckBox fused={fused} />}
             <ButtonWrapper handleClick={randomFused}>Random Fused</ButtonWrapper>
             <DeckTableContainer decks={decks} />
         </>
