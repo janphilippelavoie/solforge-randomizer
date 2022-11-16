@@ -1,4 +1,5 @@
 import * as React from 'react'
+import FusedDeckTableContainer from '../containers/FusedDeckTableContainer';
 
 /* const useStyles = makeStyles({
 
@@ -13,7 +14,7 @@ export default function FusedDeckPage(props) {
 
     return (
         <>
-            Fused decks here
+            <FusedDeckTableContainer decks={fusedDecks} />
         </>
     )
 }
