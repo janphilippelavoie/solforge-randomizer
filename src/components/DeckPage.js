@@ -1,6 +1,6 @@
 import * as React from 'react'
 import DeckTableContainer from '../containers/DeckTableContainer';
-import FusedDeckBox from './FusedDeck';
+import FusedDeckBox from './FusedDeckBox';
 import ButtonWrapper from './wrappers/ButtonWrapper';
 
 /* const useStyles = makeStyles({

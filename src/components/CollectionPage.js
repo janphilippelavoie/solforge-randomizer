@@ -59,10 +59,10 @@ export default function CollectionPage(props) {
                 </Tabs>
             </Box>
             <TabPanel index={0}>
-                <DeckPage decks={collection.decks} />
+                <DeckPage decks={collection.getDecks()} />
             </TabPanel>
             <TabPanel index={1}>
-                <FusedDeckPage fusedDecks={collection.fusedDecks} />
+                <FusedDeckPage fusedDecks={collection.getFusedDecks()} />
             </TabPanel>
 
         </>

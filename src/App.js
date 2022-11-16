@@ -23,7 +23,7 @@ export function App() {
     <>
       <CssBaseline />
 
-      {collection.decks.length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <CollectionPage handleSearchClick={handleSearchClick} collection={collection} />}
+      {collection.getDecks().length === 0 ? <LandingPage handleSearchClick={handleSearchClick} /> : <CollectionPage handleSearchClick={handleSearchClick} collection={collection} />}
     </>
   )
 }
