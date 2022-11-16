@@ -42,6 +42,17 @@ export class Deck {
         return total;
     }
 
+    getAllCreatureSubTypes() {
+        let deckSubTypes = new Set();
+        for (const card of this.cards) {
+            let cardSubTypes = card.getCreatureSubTypes();
+            for (const subType of cardSubTypes) {
+                deckSubTypes.add(subType);
+            }
+        }
+        return Array.from(deckSubTypes).sort();
+    }
+
     getAverageCreatureProperty(level, propName) {
         let total = 0;
         let nbCreatures = 0;

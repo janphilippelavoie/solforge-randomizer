@@ -32,8 +32,9 @@ export default function DeckTableContainer(props) {
     { id: "healthII", label: headerIcons("Average Health", ImagePaths.Level2), number: true },
     { id: "healthIII", label: headerIcons("Average Health", ImagePaths.Level3), number: true },
     { id: "nbCreatures", label: "Creatures", number: true },
-    { id: "nbSpells", label: "Spells", number: true }
-  ]
+    { id: "nbSpells", label: "Spells", number: true },
+    { id: "creatureTypes", label: "Creature Types", number: false }
+  ];
 
   function getRows() {
     return decks.map(deck => {
@@ -48,7 +49,8 @@ export default function DeckTableContainer(props) {
           "healthII": getFormattedValue(deck.getAverageCreatureProperty(2, CreatureProperty.Health)),
           "healthIII": getFormattedValue(deck.getAverageCreatureProperty(3, CreatureProperty.Health)),
           "nbCreatures": deck.getNbCardsOfType(CardType.Creature),
-          "nbSpells": deck.getNbCardsOfType(CardType.Spell)
+          "nbSpells": deck.getNbCardsOfType(CardType.Spell),
+          "creatureTypes": deck.getAllCreatureSubTypes().join(", ")
         }
       });
   }
