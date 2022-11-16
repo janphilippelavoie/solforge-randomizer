@@ -1,6 +1,6 @@
 import * as React from 'react'
 import DeckTableContainer from '../containers/DeckTableContainer';
-import FusedDeck from './FusedDeck';
+import FusedDeckBox from './FusedDeck';
 import ButtonWrapper from './wrappers/ButtonWrapper';
 
 /* const useStyles = makeStyles({
@@ -30,7 +30,7 @@ export default function DeckPage(props) {
 
     return (
         <>
-            {fused.length > 0 && <FusedDeck fused={fused} />}
+            {fused.length > 0 && <FusedDeckBox fused={fused} />}
             <ButtonWrapper handleClick={randomFused}>Random Fused</ButtonWrapper>
             <DeckTableContainer decks={decks} />
         </>

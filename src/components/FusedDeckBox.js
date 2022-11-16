@@ -2,7 +2,7 @@ import {Box, List, ListItem, ListItemText, Typography} from "@mui/material";
 import DeckLink from "./DeckLink";
 import * as React from "react";
 
-export default function FusedDeck(props) {
+export default function FusedDeckBox(props) {
 
   const {fused} = props
   return (
