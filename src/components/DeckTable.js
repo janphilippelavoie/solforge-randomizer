@@ -2,7 +2,7 @@ import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHe
 import * as React from 'react'
 import DeckLink from "./DeckLink";
 import FusedDeckLink from "./FusedDeckLink";
-
+import ButtonWrapper from "./wrappers/ButtonWrapper";
 
 const useStyles = makeStyles({
   table: {
@@ -20,7 +20,7 @@ export default function DeckTable(props) {
   const classes = useStyles();
 
   //props
-  const { headers, rows, tableName, deckType = 'deck' } = props
+  const { headers, rows, tableName, handleClick, deckType = 'deck' } = props
 
   //state
   const [order, setOrder] = React.useState('asc');
@@ -41,6 +41,8 @@ export default function DeckTable(props) {
       }
     } else if (header.id === 'deck1' || header.id === 'deck2') {
       return <DeckLink deckId={row[header.id + 'Id']} deckName={row[header.id]} />;
+    } else if (header.id === 'hand') {
+      return <ButtonWrapper handleClick={() => handleClick(row[header.id])}>Draw</ButtonWrapper>
     }
     
     return row[header.id];
