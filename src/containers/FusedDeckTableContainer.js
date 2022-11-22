@@ -4,7 +4,7 @@ import DeckTable from '../components/DeckTable';
 export default function FusedDeckTableContainer(props) {
 
     //props
-    const { decks } = props
+    const { decks, handleClick } = props
   
     
     const headers = [
@@ -23,7 +23,7 @@ export default function FusedDeckTableContainer(props) {
             "deck1Id": deck.decks[0].id,
             "deck2": deck.decks[1].name,
             "deck2Id": deck.decks[1].id,
-            "hand": deck.getRandomHand().map((card) => card.title).sort().join(", ")
+            "hand": deck
           }
         });
     }
@@ -34,6 +34,7 @@ export default function FusedDeckTableContainer(props) {
           rows={getRows()}
           tableName="FusedDecks"
           deckType="fusedDeck"
+          handleClick={handleClick}
         />
     )
   }
