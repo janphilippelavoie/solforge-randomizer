@@ -14,9 +14,19 @@ export default class DeckGateway {
     }
 
     async getDecks(username) {
-        const response = await fetch(URIs.SolforgeAPI + `deck?pageSize=1000&inclCards=true&username=${username.toLowerCase()}`);
+        const URI = URIs.SolforgeAPI + `deck?pageSize=1000&inclCards=true&username=${username.toLowerCase()}`
+        let decks = []
+        let response = await fetch(URI);
+        let apiData = await response.json()
+        decks = decks.concat(this.formatDecks(apiData))
         
-        return this.formatDecks(await response.json());
+        while(apiData.LastEvaluatedKey) {
+            let exclusiveStartKey = encodeURIComponent(JSON.stringify(apiData.LastEvaluatedKey))
+            response = await fetch(URI + `&exclusiveStartKey=${exclusiveStartKey}`);
+            apiData = await response.json()
+            decks = decks.concat(this.formatDecks(apiData))
+        }
+        return decks
     }
 
     async getFusedDecks(username) {
