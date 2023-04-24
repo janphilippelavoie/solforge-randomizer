@@ -15,7 +15,7 @@ export class Card {
 
     constructor (apiData) {
         this.cardType = apiData.cardType;
-        this.cardSubTypes = apiData.cardSubType;
+        this.cardSubTypes = apiData.cardSubType ? apiData.cardSubType : '';
         this.title = apiData.title;
         this.rarity = apiData.rarity;
         this.levels = apiData.levels;
